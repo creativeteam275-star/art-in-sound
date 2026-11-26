@@ -9,6 +9,7 @@
 @font-face{font-family:"Lyon Ar";src:url("assets/LyonArDisp-Medium.woff2") format("woff2");font-weight:500;font-display:block}
 @font-face{font-family:"Graphik Ar";src:url("assets/GraphikAr-Light.woff2") format("woff2");font-weight:300;font-display:block}
 @font-face{font-family:"Graphik Ar";src:url("assets/GraphikAr-SemiBold.woff2") format("woff2");font-weight:600;font-display:block}
+@font-face{font-family:"Graphik Ar";src:url("assets/GraphikAr-Regular.woff2") format("woff2");font-weight:400;font-display:block}
 
 :root{
   --blue:#B1D6FF;
@@ -31,59 +32,53 @@ body{color:#000;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibi
 .t-ar{color:var(--blue);font-size:calc(var(--u)*86);left:calc(var(--u)*275);top:calc(var(--u)*41);direction:rtl;z-index:2}
 
 
-/* ---------- bottom: blue band ---------- */
-.body .wrap{height:calc(var(--u)*990)}
-.abs{position:absolute}
+/* ---------- bottom: blue band (flows, so longer copy pushes everything below it down) ---------- */
+.body .wrap{padding:calc(var(--u)*68.7) 0 calc(var(--u)*91)}
 .h-ar{font-family:"Lyon Ar",serif;font-weight:500;font-feature-settings:"salt" 1;direction:rtl;font-size:calc(var(--u)*58);line-height:1;
-  left:0;right:0;text-align:center;top:calc(var(--u)*(650 - 581.3));white-space:nowrap}
+  text-align:center;white-space:nowrap}
 .h-en{font-family:"Lyon Ar",serif;font-weight:500;font-size:calc(var(--u)*56);line-height:calc(var(--u)*75);
-  left:0;right:0;width:fit-content;margin:0 auto;text-align:left;top:calc(var(--u)*(722 - 581.3));white-space:nowrap}
+  width:fit-content;margin:calc(var(--u)*14) auto 0;text-align:left;white-space:nowrap}
 .h-en .rule{display:inline-block;vertical-align:middle;width:calc(var(--u)*273);height:max(1px,calc(var(--u)*1));
   background:#000;margin-left:calc(var(--u)*14);position:relative;top:calc(var(--u)*2)}
 
-.col{top:calc(var(--u)*(967 - 581.3));font-family:"Graphik Ar",sans-serif;font-weight:300;
-  font-size:calc(var(--u)*18.9);line-height:calc(var(--u)*22.2)}
-.col b,.col strong{font-weight:600}
-.col p+p{margin-top:calc(var(--u)*22.2)}
-.col .hi{margin-bottom:calc(var(--u)*22.2);font-weight:600}
-.col-en{left:calc(var(--u)*123);width:calc(var(--u)*395)}
-.col-ar{top:calc(var(--u)*(967 - 581.3 - 2.3));right:calc(var(--u)*(1095.36 - 975));width:calc(var(--u)*395);direction:rtl;text-align:justify;
-  font-size:calc(var(--u)*20.2);line-height:calc(var(--u)*25.2)}
-.col-ar p+p{margin-top:calc(var(--u)*31)}
-.col-ar .hi{margin-bottom:calc(var(--u)*14)}
-.col-ar .hi+p{margin-top:calc(var(--u)*19.6)}
+/* the letter: each English paragraph sits on the same row as its Arabic one */
+.cols{display:grid;grid-template-columns:calc(var(--u)*395) calc(var(--u)*395);column-gap:calc(var(--u)*62);
+  row-gap:calc(var(--u)*24);margin:calc(var(--u)*95) 0 0 calc(var(--u)*123);width:max-content;align-items:start}
+.c{font-family:"Graphik Ar",sans-serif;font-weight:300}
+.c b,.c strong{font-weight:400}
+.c.hi{font-weight:600}
+.c.en{grid-column:1;text-align:justify;hyphens:auto;-webkit-hyphens:auto;font-size:calc(var(--u)*18.9);line-height:calc(var(--u)*22.2)}
+.c.ar{grid-column:2;direction:rtl;text-align:justify;font-size:calc(var(--u)*20.2);line-height:calc(var(--u)*27);margin-top:calc(var(--u)*-2.4)}
 
-.close{left:0;right:0;top:calc(var(--u)*(1282 - 581.3));text-align:center;font-family:"Graphik Ar",sans-serif;
+.close{margin-top:calc(var(--u)*64);text-align:center;font-family:"Graphik Ar",sans-serif;
   font-weight:600;font-size:calc(var(--u)*16.4);line-height:calc(var(--u)*28.5)}
 .close .ar{direction:rtl}
 .credit span{white-space:nowrap}
-.dl{left:0;right:0;top:calc(var(--u)*(1362 - 581.3));text-align:center;font-family:"Graphik Ar",sans-serif;font-weight:300;
+.dl{display:block;margin:calc(var(--u)*23) auto 0;text-align:center;font-family:"Graphik Ar",sans-serif;font-weight:300;
   font-size:calc(var(--u)*16.4);line-height:1.4;color:#000;text-decoration:underline;text-underline-offset:.25em;
-  text-decoration-thickness:1px;width:max-content;margin:0 auto}
+  text-decoration-thickness:1px;width:max-content}
 .dl:hover{text-decoration-thickness:2px}
 .dl[aria-busy=true]{opacity:.5;pointer-events:none}
-.credit{left:0;right:0;text-align:center;top:calc(var(--u)*(1430 - 581.3));font-family:"Graphik Ar",sans-serif;font-weight:300;
+.credit{margin-top:calc(var(--u)*45);text-align:center;font-family:"Graphik Ar",sans-serif;font-weight:300;
   font-size:calc(var(--u)*17.6);line-height:calc(var(--u)*25)}
 
-/* ---------- phones: same design, text reflows ---------- */
+/* ---------- phones: same design, text reflows; all Arabic first, then all English ---------- */
 @media (max-width:760px){
   :root{--u:calc(100vw / 1095.36)}
   .hero .wrap{height:82vw}
   .t-en{font-size:calc(var(--u)*96);left:calc(var(--u)*300);top:calc(var(--u)*80)}
   .t-ar{font-size:calc(var(--u)*98);left:calc(var(--u)*230);top:calc(var(--u)*66)}
-  .body .wrap{height:auto;padding:calc(var(--u)*60) 24px 48px}
-  .abs{position:static}
-  .h-ar{font-size:9.4vw;margin-bottom:2vw;text-align:center}
-  .h-en{font-size:8.6vw;line-height:1.22;white-space:normal;width:fit-content;margin:0 auto;text-align:left}
+  .body .wrap{padding:calc(var(--u)*60) 24px 48px}
+  .h-ar{font-size:9.4vw;margin-bottom:2vw}
+  .h-en{font-size:8.6vw;line-height:1.22;white-space:normal;margin-top:0}
   .h-en .rule{width:22vw;margin-left:3vw}
-  .col{font-size:15px;line-height:1.48;width:auto;margin-top:40px}
-  .col p+p,.col-ar p+p{margin-top:1.1em}
-  .col .hi,.col-ar .hi{margin-bottom:1em}
-  .col-ar .hi+p{margin-top:1.1em}
-  .col-ar{line-height:1.65;text-align:right}
-  .cols{display:flex;flex-direction:column-reverse}
+  .cols{display:flex;flex-direction:column;margin:40px 0 0;width:auto;row-gap:1.1em}
+  .c.en,.c.ar{font-size:15px;margin-top:0}
+  .c.en{order:2;line-height:1.48;text-align:left}
+  .c.ar{order:1;line-height:1.75;text-align:right}
+  .c.en.hi{margin-top:calc(40px - 1.1em)}
   .close{font-size:15px;line-height:1.7;margin-top:40px}
-  .dl{display:block;font-size:14px;margin-top:28px;width:auto}
+  .dl{font-size:14px;margin-top:28px;width:auto}
   .credit{font-size:14px;line-height:1.6;margin-top:44px}
 }
 </style>
@@ -102,33 +97,42 @@ body{color:#000;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibi
 
 <section class="body">
   <div class="wrap">
-    <h1 class="abs h-ar">الفن في تجربة موسيقية</h1>
-    <h2 class="abs h-en">Art Through a Musical<br>Experience<span class="rule"></span></h2>
+    <h1 class="h-ar">الفن في تجربة موسيقية</h1>
+    <h2 class="h-en">Art Through a Musical<br>Experience<span class="rule"></span></h2>
 
     <div class="cols">
-      <div class="abs col col-en" lang="en">
-        <p class="hi">Dear Misk Art Institute Team,</p>
-        <p>On behalf of <b>Hattan Ghaliaini and Majed Alshahri, the Creative Studio Team</b> presents Misk Art Institute with a musical composition inspired by Art Week’s identity, blending jazz, house, and traditional Khubaiti rhythms.</p>
-        <p>Celebrating ten years of Art Week and its first edition at Misk City, this composition adds a unique sonic dimension to the artistic experience.</p>
-      </div>
+      <p class="c en hi" lang="en">Dear Misk Art Institute Team,</p>
+      <p class="c ar hi" lang="ar">الأعزاء في مسك الفنون،</p>
 
-      <div class="abs col col-ar" lang="ar">
-        <p class="hi">الأعزاء في مسك الفنون،</p>
-        <p>بالنيابة عن الأستاذ <b>هتان غلاييني والأستاذ ماجد الشهري، يقدّم فريق الاستديو الإبداعي</b> إلى مسك الفنون مقطوعة موسيقية مستوحاة من هوية أسبوع الفن، تجمع بين الجاز والهاوس والإيقاع الخبيتي.</p>
-        <p>احتفاءً بمرور عشر سنوات على أسبوع الفن، وإقامة نسخته الأولى في مدينة الأمير محمد بن سلمان غير الربحية، يأتي هذا العمل ليضيف بُعدًا صوتيًا مميزًا للتجربة الفنية.</p>
-      </div>
+      <p class="c en" lang="en"><b>The Creative Studio Team at Misk Foundation</b> presents Misk Art Institute with a musical composition inspired by Art Week’s identity, blending <b>jazz, house, and traditional Khubaiti rhythms</b>.</p>
+      <p class="c ar" lang="ar">يقدّم <b>فريق الاستديو الإبداعي في مؤسسة مسك</b> إلى مسك الفنون مقطوعة موسيقية مستوحاة من هوية أسبوع الفن، تجمع بين <b>الجاز والهاوس والإيقاع الخبيتي</b>.</p>
+
+      <p class="c en" lang="en">Celebrating <b>ten years of Art Week</b> and its first edition at Misk City, this composition adds a unique sonic dimension to the artistic experience.</p>
+      <p class="c ar" lang="ar">احتفاءً بمرور <b>عشر سنوات على أسبوع الفن</b>، وإقامة نسخته الأولى في مدينة الأمير محمد بن سلمان غير الربحية، يأتي هذا العمل ليضيف بُعدًا صوتيًا مميزًا للتجربة الفنية.</p>
+
+      <p class="c en" lang="en">The piece was composed as an extension of Misk Art Week’s <b>sonic identity</b>, giving this edition a distinctive sound that connects visitors to the place and stays with them after they leave.</p>
+      <p class="c ar" lang="ar">صُمّمت المقطوعة امتدادًا <b>للهوية الصوتية</b> لأسبوع مسك للفنون، لتمنح هذه النسخة طابعًا موسيقيًا يرتبط بالمكان ويبقى في ذاكرة الزوّار.</p>
+
+      <p class="c en" lang="en">The first section opens with a dialogue between jazz piano and sustained string pads. When the Khubaiti rhythm enters, it takes a central role in shaping the piece and driving it forward, giving the music a <b>distinctly Saudi character</b>.</p>
+      <p class="c ar" lang="ar">يبدأ الجزء الأول بحوار بين البيانو بروح الجاز وطبقات وترية ممتدة بأسلوب الـPad. ومع دخول الإيقاع الخبيتي، يصبح عنصرًا أساسيًا في تشكيل المقطوعة وحركتها، ويمنحها <b>طابعًا سعوديًا واضحًا</b>.</p>
+
+      <p class="c en" lang="en">In the second section, the music <b>shifts into house</b> with a more energetic pulse. The jazz harmonies carry through, linking the two sections and preserving the musical identity as the rhythm and energy change. This variation keeps the piece fresh as it plays on a loop throughout the event.</p>
+      <p class="c ar" lang="ar">في الجزء الثاني، <b>تنتقل المقطوعة إلى الهاوس</b> بنبض أكثر حيوية، وتبقى تآلفات الجاز حاضرة لتربط بين الجزأين وتحافظ على الهوية الموسيقية رغم تغيّر الإيقاع والطاقة. ويكسر هذا التنويع رتابة التكرار عند تشغيل المقطوعة في حلقة مستمرة خلال الحدث.</p>
+
+      <p class="c en" lang="en">We chose jazz because its <b>experimental spirit</b> resonates with Misk Art Week. It allows the music to move between quiet moments spent with the artworks and the energy of visitors moving through the exhibition spaces. By bringing Khubaiti, jazz, and house together, we wanted the music to <b>stay with visitors</b> alongside the art they experienced.</p>
+      <p class="c ar" lang="ar">اخترنا الجاز لأن <b>روحه التجريبية</b> قريبة من روح أسبوع مسك للفنون، ولأنه يمنح الموسيقى مساحة للتنقّل بين هدوء التأمّل أمام الأعمال الفنية وحيوية الحركة بين مساحات العرض. ومن لقاء الخبيتي بالجاز والهاوس، أردنا أن يبقى لهذه النسخة <b>صدى يتذكّره الزائر</b> كما يتذكّر ما رآه فيها.</p>
     </div>
 
-    <div class="abs close">
+    <div class="close">
       <div class="ar">مع الحب لأسبوع الفن وكل من يصنعه.</div>
       <div>With love for Art Week and everyone who brings it to life.</div>
     </div>
 
-    <a class="abs dl" id="dl" href="https://github.com/creativeteam275-star/art-in-sound/releases/latest/download/Art-in-Sound_Misk-Art-Week-2026.wav">
+    <a class="dl" id="dl" href="https://github.com/creativeteam275-star/art-in-sound/releases/latest/download/Art-in-Sound_Misk-Art-Week-2026.wav">
       <span dir="rtl">لتحميل المقطوعة الموسيقية اضغط هنا</span> · To download the music, click here
     </a>
 
-    <div class="abs credit">
+    <div class="credit">
       Music Composition &amp; Arrangement | <span dir="rtl">التأليف والتوزيع الموسيقي</span><br>
       Mohammed Aljuraibi | <span dir="rtl">محمد الجريبي</span>
     </div>
