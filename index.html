@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الفن المسموع — Art in Sound</title>
+<style>
+@font-face{font-family:"Lyon Ar";src:url("assets/LyonArDisp-Light.woff2") format("woff2");font-weight:300;font-display:block}
+@font-face{font-family:"Lyon Ar";src:url("assets/LyonArDisp-Medium.woff2") format("woff2");font-weight:500;font-display:block}
+@font-face{font-family:"Graphik Ar";src:url("assets/GraphikAr-Light.woff2") format("woff2");font-weight:300;font-display:block}
+@font-face{font-family:"Graphik Ar";src:url("assets/GraphikAr-SemiBold.woff2") format("woff2");font-weight:600;font-display:block}
+
+:root{
+  --blue:#B1D6FF;
+  /* 1 design point of the 1095pt artboard, scaled to the screen */
+  --u:calc(min(100vw, 1600px) / 1095.36);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--blue)}
+body{color:#000;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.wrap{width:min(100vw,1600px);margin:0 auto;position:relative}
+
+/* ---------- top: black band + video ---------- */
+.hero{background:#000;position:relative}
+.hero .wrap{height:calc(var(--u)*581.3);overflow:hidden}
+.hero video{position:absolute;left:0;bottom:0;width:100%;height:auto;display:block;pointer-events:none}
+.t{position:absolute;top:0;padding:.35em .45em;margin:-.35em -.45em;font-feature-settings:"salt" 1;font-family:"Lyon Ar",serif;font-weight:300;white-space:nowrap;line-height:1;pointer-events:none}
+.t-en{color:#fff;font-size:calc(var(--u)*84);left:calc(var(--u)*340);top:calc(var(--u)*51);z-index:3}
+.t-ar{color:var(--blue);font-size:calc(var(--u)*86);left:calc(var(--u)*275);top:calc(var(--u)*41);direction:rtl;z-index:2}
+
+
+/* ---------- bottom: blue band ---------- */
+.body .wrap{height:calc(var(--u)*990)}
+.abs{position:absolute}
+.h-ar{font-family:"Lyon Ar",serif;font-weight:500;font-feature-settings:"salt" 1;direction:rtl;font-size:calc(var(--u)*58);line-height:1;
+  left:calc(var(--u)*58);top:calc(var(--u)*(650 - 581.3));white-space:nowrap}
+.h-en{font-family:"Lyon Ar",serif;font-weight:500;font-size:calc(var(--u)*56);line-height:calc(var(--u)*75);
+  left:calc(var(--u)*58);top:calc(var(--u)*(722 - 581.3));white-space:nowrap}
+.h-en .rule{display:inline-block;vertical-align:middle;width:calc(var(--u)*273);height:max(1px,calc(var(--u)*1));
+  background:#000;margin-left:calc(var(--u)*14);position:relative;top:calc(var(--u)*2)}
+
+.col{top:calc(var(--u)*(967 - 581.3));font-family:"Graphik Ar",sans-serif;font-weight:300;
+  font-size:calc(var(--u)*18.9);line-height:calc(var(--u)*22.2)}
+.col b,.col strong{font-weight:600}
+.col p+p{margin-top:calc(var(--u)*22.2)}
+.col .hi{margin-bottom:calc(var(--u)*22.2);font-weight:600}
+.col-en{left:calc(var(--u)*123);width:calc(var(--u)*395)}
+.col-ar{right:calc(var(--u)*(1095.36 - 975));width:calc(var(--u)*395);direction:rtl;text-align:justify;
+  font-size:calc(var(--u)*20.2);line-height:calc(var(--u)*25.2)}
+.col-ar p+p{margin-top:calc(var(--u)*31)}
+.col-ar .hi{margin-bottom:calc(var(--u)*14)}
+
+.close{left:0;right:0;top:calc(var(--u)*(1282 - 581.3));text-align:center;font-family:"Graphik Ar",sans-serif;
+  font-weight:600;font-size:calc(var(--u)*16.4);line-height:calc(var(--u)*28.5)}
+.close .ar{direction:rtl}
+.credit span{white-space:nowrap}
+.dl{left:0;right:0;top:calc(var(--u)*(1362 - 581.3));text-align:center;font-family:"Graphik Ar",sans-serif;font-weight:300;
+  font-size:calc(var(--u)*16.4);line-height:1.4;color:#000;text-decoration:underline;text-underline-offset:.25em;
+  text-decoration-thickness:1px;width:max-content;margin:0 auto}
+.dl:hover{text-decoration-thickness:2px}
+.credit{left:calc(var(--u)*60);top:calc(var(--u)*(1430 - 581.3));font-family:"Graphik Ar",sans-serif;font-weight:300;
+  font-size:calc(var(--u)*17.6);line-height:calc(var(--u)*25)}
+
+/* ---------- phones: same design, text reflows ---------- */
+@media (max-width:760px){
+  :root{--u:calc(100vw / 1095.36)}
+  .body .wrap{height:auto;padding:calc(var(--u)*60) 24px 48px}
+  .abs{position:static}
+  .h-ar{font-size:9.4vw;margin-bottom:2vw;text-align:left}
+  .h-en{font-size:8.6vw;line-height:1.22;white-space:normal}
+  .h-en .rule{width:22vw;margin-left:3vw}
+  .col{font-size:15px;line-height:1.48;width:auto;margin-top:40px}
+  .col p+p,.col-ar p+p{margin-top:1.1em}
+  .col .hi{margin-bottom:1em}
+  .col-ar{line-height:1.65;text-align:right}
+  .cols{display:flex;flex-direction:column-reverse}
+  .close{font-size:15px;line-height:1.7;margin-top:40px}
+  .dl{display:block;font-size:14px;margin-top:28px;width:auto}
+  .credit{font-size:14px;line-height:1.6;margin-top:44px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <video id="v" src="assets/art-in-sound.mp4" playsinline loop autoplay preload="auto"></video>
+    <div class="t t-ar">الفن المـــــــــــــــــسموع</div>
+    <div class="t t-en">Art in Sound</div>
+  </div>
+</section>
+
+<section class="body">
+  <div class="wrap">
+    <h1 class="abs h-ar">الفن في تجربة موسيقية</h1>
+    <h2 class="abs h-en">Art Through a Musical<br>Experience<span class="rule"></span></h2>
+
+    <div class="cols">
+      <div class="abs col col-en" lang="en">
+        <p class="hi">Dear Misk Art Institute Team,</p>
+        <p>On behalf of <b>Hattan Ghaliaini and Majed Alshahri, the Creative Studio Team</b> presents Misk Art Institute with a musical composition inspired by Art Week’s identity, blending jazz, house, and traditional Khubaiti rhythms.</p>
+        <p>Celebrating ten years of Art Week and its first edition at Misk City, this composition adds a unique sonic dimension to the artistic experience.</p>
+      </div>
+
+      <div class="abs col col-ar" lang="ar">
+        <p class="hi">الأعزاء في مسك الفنون،</p>
+        <p>بالنيابة عن الأستاذ <b>هتان غلاييني والأستاذ ماجد الشهري، يقدّم فريق الاستديو الإبداعي</b> إلى مسك الفنون مقطوعة موسيقية مستوحاة من هوية أسبوع الفن، تجمع بين الجاز والهاوس والإيقاع الخبيتي.</p>
+        <p>احتفاءً بمرور عشر سنوات على أسبوع الفن، وإقامة نسخته الأولى في مدينة الأمير محمد بن سلمان غير الربحية، يأتي هذا العمل ليضيف بُعدًا صوتيًا مميزًا للتجربة الفنية.</p>
+      </div>
+    </div>
+
+    <div class="abs close">
+      <div class="ar">مع الحب لأسبوع الفن وكل من يصنعه.</div>
+      <div>With love for Art Week and everyone who brings it to life.</div>
+    </div>
+
+    <!-- The WAV is over GitHub's 100MB limit, so it lives in the repo's Releases. Replace USERNAME with your GitHub username. -->
+    <a class="abs dl" href="https://github.com/USERNAME/art-in-sound/releases/latest/download/Art-in-Sound_Misk-Art-Week-2026.wav">
+      <span dir="rtl">لتحميل المقطوعة الموسيقية اضغط هنا</span> · To download the music, click here
+    </a>
+
+    <div class="abs credit">
+      Music Composition &amp; Arrangement | <span dir="rtl">التأليف والتوزيع الموسيقي</span><br>
+      Mohammed Aljuraibi | <span dir="rtl">محمد الجريبي</span>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Sound plays directly. If the browser blocks sound before any interaction,
+   the piece starts silently and the sound comes in (from the beginning) on the first touch, click, key or scroll. */
+const v=document.getElementById('v');
+let live=false;
+function goLive(){ if(live) return; live=true;
+  v.currentTime=0; v.muted=false; v.volume=1; v.play().catch(()=>{});
+  ['pointerdown','touchend','keydown','click'].forEach(e=>removeEventListener(e,goLive,true)); }
+v.muted=false;
+v.play().then(()=>{ live=true; }).catch(()=>{
+  v.muted=true; v.play().catch(()=>{});
+  ['pointerdown','touchend','keydown','click'].forEach(e=>addEventListener(e,goLive,{capture:true,passive:true}));
+});
+v.addEventListener('pause',()=>{ if(!v.ended) v.play().catch(()=>{}); });
+</script>
+</body>
+</html>
